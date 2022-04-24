@@ -19,13 +19,15 @@
 
         <TextView
             android:id="@+id/text_evva"
+            android:maxHeight="26dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="EVVA"
-            android:paddingHorizontal="50dp"
+            android:paddingHorizontal="10dp"
             android:textColor="@color/white"
             android:alpha="0"
-            android:textSize="19dp"
+            tools:alpha="1"
+            android:textSize="20.50dp"
             android:fontFamily="@font/druk" />
     </LinearLayout>
 
@@ -34,28 +36,12 @@
         android:id="@+id/text_staff"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:paddingBottom="2dp"
         android:text="STAFF"
         android:textColor="@color/white"
         android:layout_centerInParent="true"
-        android:translationX="3dp"
-        android:textSize="17dp"
+        android:translationX="1dp"
+        android:textSize="17.66dp"
         android:fontFamily="@font/druk" />
 
-    <View
-        android:id="@+id/top_ring"
-        android:layout_width="200dp"
-        android:layout_height="200dp"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true"
-        android:layout_centerInParent="true"
-        android:background="@drawable/ring" />
-
-    <View
-        android:id="@+id/bottom_ring"
-        android:layout_width="200dp"
-        android:layout_height="200dp"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_centerInParent="true"
-        android:background="@drawable/ring" />
 </RelativeLayout>
