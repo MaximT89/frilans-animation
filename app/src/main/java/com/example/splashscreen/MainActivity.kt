@@ -28,10 +28,14 @@ const val SPEED_EVVA = 400
 // Скорость анимации слова STAFF
 const val SPEED_STAFF = 300
 
+// Скорость анимации black ball
+const val SPEED_BALL = 4100
+
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
     private val listAnimatorSet = mutableListOf<AnimatorSet>()
+    private val listAnimatorSet2 = mutableListOf<AnimatorSet>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -50,11 +54,19 @@ class MainActivity : AppCompatActivity() {
 //                startActivity(Intent(this@MainActivity, SecondActivity::class.java))
             }
         }
+
+        lifecycleScope.launch(Dispatchers.Main){
+            delay(START_DELAY.toLong())
+            listAnimatorSet2.playAllSets(lifecycleScope){
+//                // тут код для перехода на нужную активность
+//                startActivity(Intent(this@MainActivity, SecondActivity::class.java))
+            }
+        }
     }
 
     @SuppressLint("Recycle")
     private fun initAnimators() {
-        val translationY = ObjectAnimator.ofFloat(binding.textStaff, View.TRANSLATION_Y, 1f, 55f)
+        val translationY = ObjectAnimator.ofFloat(binding.textStaff, View.TRANSLATION_Y, -55f, -15f)
         val alphaText = ObjectAnimator.ofFloat(binding.textEvva, View.ALPHA, 0f, 1f)
 
         val animatorSetAlpha = AnimatorSet().apply {
@@ -66,6 +78,16 @@ class MainActivity : AppCompatActivity() {
             duration = SPEED_STAFF.toLong()
             play(translationY)
         }
+
+        val animatorSetX = ObjectAnimator.ofFloat(binding.blackBall, View.TRANSLATION_X, 1f, -500f, -50f, -400f)
+        val animatorSetY = ObjectAnimator.ofFloat(binding.blackBall, View.TRANSLATION_Y, 1f, -250f, -400f, -600f)
+
+        val animatorSetStaff = AnimatorSet().apply {
+            duration = SPEED_BALL.toLong()
+            playTogether(animatorSetX, animatorSetY)
+        }
+
+        listAnimatorSet2.add(animatorSetStaff)
 
         listAnimatorSet.add(animatorSetAlpha)
         listAnimatorSet.add(animatorSetTranslationY)
